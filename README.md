@@ -1,10 +1,9 @@
 ## HRMS--Frontend-Microservice
+==============================
 
 A front end application build in html, css, js, and npm http-server.
-------------------------------
 
 The app perform CRUD opertion on a employee entity.
-------------------------------
 
 Steps to run application->
 1. This application contains DockerFile. Navigate to the application folder and run bellow mentioned commands on docker installed machine.
