@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Add Employee</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+    <div class="row col-md-12">
+        <div class="col-md-2 col-sm-12" align="center" style="font-family: verdana;color: #17202A;">
+            <h3 style="margin-top: 40px;font-weight:500">H R M S</h3>
+
+        </div>
+        <div class="col-md-10 col-sm-12"></div>
+    </div>
+
+    <br><br><br><br>
+    <h2 style="padding-left: 120px">Add Employee Details</h2>
+
+    <div class="container col-md-6">
+
+      <form id = "form" class="form-horizontal" method="post">
+            
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="text">Name:</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" placeholder="Full Name" name="text" >
+          </div>
+
+        </div>
+        
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="text">Email:</label>
+          <div class="col-sm-10">
+            <input type="email" class="form-control" id="email" placeholder="Email" name="email">
+          </div>
+        </div>
+
+
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="text">Phone:</label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control" id="phone" placeholder="Phone" name="phone">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="text">Team:</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="team" placeholder="Team" name="team">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="text">Date of Joining:</label>
+          <div class="col-sm-10">
+            <input type="date" id="doj" name="doj">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="role">Role</label>
+          <div class="col-sm-10">
+            <select name="role" id = "role">
+            <option value="Intern">Intern</option>
+            <option value="SDE">SDE</option>
+            <option value="Big Data">Big Data</option>
+            <option value="HR">HR</option>
+        </select>
+          </div>
+        </div>
+
+        <div class="form-group">        
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-danger" style="width: 100px">Submit</button>
+          </div>
+        </div>
+      </form>
+</div>
+
+</body>
+ <script>
+
+    var form = document.getElementById("form");
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var name = document.getElementById("name").value;
+        var email = document.getElementById("email").value;
+        var phone = document.getElementById("phone").value;
+        var team = document.getElementById("team").value;
+        var doj = document.getElementById("doj").value;
+        var roleIndex = document.getElementById("role").selectedIndex;
+        var role = document.getElementsByTagName("option")[roleIndex].value;
+
+        const Url = 'http://localhost:8080/api/v1/person';
+        const Data = {
+          "name": name,
+          "email":email,
+          "phone":phone,
+          "team":team,
+          "role":role,
+          "doj":doj
+          };  
+        const otherParam = {
+          headers : {
+            "content-type": "application/json; charset= UTF-8"
+          },
+          body: JSON.stringify(Data),
+          method:"POST"
+        };
+        fetch(Url,otherParam)
+        .then(Response=> {
+            if (Response.status == 200) {
+              location.href = 'dashboard.html';
+            }
+            else{
+              alert("Failed to add Employee")
+            }
+        })
+        .catch(error=>console.log(error))
+
+      })
+
+   </script>
+
+</html>

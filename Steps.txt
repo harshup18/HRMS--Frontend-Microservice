@@ -1,0 +1,4 @@
+
+Step 1. Create Dockerfile
+Step 2. Create docker image from building the Dockerfile
+>> docker build -t hrmsui .
