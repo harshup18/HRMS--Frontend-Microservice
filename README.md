@@ -15,3 +15,7 @@ Steps to run application->
 
 3. Find the springboot backend application here, clone it and run the application.
    https://github.com/harshup18/HRMS-Microservice
+
+4. Log in to the portal using credentails:
+*username* : admin
+*password* : password
